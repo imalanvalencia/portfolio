@@ -1,0 +1,31 @@
+---
+import type { Project } from '../data/projects';
+import { categories } from '../data/categories';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<a
+    href={`#${project.slug}`}
+    class="group flex-none w-65 snap-start rounded-2xl overflow-hidden relative no-underline h-47.5 border transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03]"
+    style={`
+          background: ${project.color};
+        `}
+>
+    <span
+        class="absolute top-3.5 left-3.5 font-[Inter] text-[0.55rem] font-semibold tracking-[0.12em] uppercase py-1 px-2.5 rounded-full bg-black/40 text-white/80 backdrop-blur-md border border-white/6 group-hover:bg-black/50 group-hover:text-white/95 transition-colors duration-300"
+    >
+        {categories[project.category] ?? project.category}
+    </span>
+    <div class="absolute bottom-4 left-4 right-4">
+        <span
+            class="font-inter text-[1.3rem] font-bold text-white leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
+        >
+            {project.title}
+        </span>
+    </div>
+</a>

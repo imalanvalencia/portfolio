@@ -1,0 +1,78 @@
+---
+import Logo from "../assets/logo.svg";
+
+const navigationLinks = [
+  { name: "Inicio", href: "/" },
+  { name: "Proyectos", href: "/#projects" },
+  { name: "Sobre mí", href: "/#about" },
+  { name: "Contacto", href: "/#contact" },
+];
+---
+
+<header
+  class="flex justify-between items-center p-6 fixed top-0 left-0 right-0 z-50"
+>
+  <a
+    href="/"
+    class="w-37.5 text-white/90 hover:text-green-400 transition-colors"
+    ><Logo /></a
+  >
+
+  <nav class="flex items-center justify-between">
+    <ul class="flex gap-4">
+      {
+        navigationLinks.map((link) => (
+          <a
+            href={link.href}
+            class="font-crimson-pro font-extrabold text-xl text-white/90 hover:text-green-400 transition-colors duration-300"
+          >
+            <li>{link.name}</li>
+          </a>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div>
+    <span class="block w-8 h-8 rounded-full bg-red-500"></span>
+  </div>
+</header>
+
+<!-- 
+1. El Interruptor de "Actitud" (Falso Dark Mode)
+
+En lugar de un clásico y aburrido botón de "Modo Claro / Modo Oscuro", puedes poner un interruptor (toggle) lúdico:
+
+    Modo Caos vs. Modo Aburrido: Por defecto, tu web está en "Modo Caos" (colores vibrantes, tarjetas desalineadas). Si el usuario pulsa el interruptor a "Aburrido", la web se transforma en un portafolio corporativo gris, súper rígido y tradicional (como una broma).
+
+    Modo "Code Artist" vs. "Engineer": Un botón estilo switch industrial que cambie ligeramente la interfaz o la tipografía principal.
+
+2. El Indicador de Status "Terminal"
+
+Aprovechando que el rojo es tu color de acento desafiante, puedes poner un indicador de disponibilidad en la esquina:
+
+    Diseño: Un pequeño bloque con borde negro grueso, fondo blanco y un punto rojo parpadeante (animado con CSS).
+
+    Texto: Una tipografía pixelada o de terminal que diga >_ STATUS: AVAILABLE o >_ BUSCANDO RETOS.
+
+    Impacto: Es directo, le dice a los reclutadores o clientes que estás libre para trabajar, y visualmente se ve como el panel de un servidor o una consola.
+
+3. Un Easter Egg Interactivo (Botón de "No Tocar")
+
+Si quieres abrazar al máximo la sensación lúdica de Panic Studio:
+
+    Pon un botón rojo súper llamativo en el navbar con un texto que diga "NO TOCAR".
+
+    Si el usuario hace clic, puede ocurrir una micro-interacción divertida: la pantalla tiembla ligeramente, caen un par de stickers pixel art desde arriba de la pantalla, o tu logotipo de la letra "A" da un giro. A los reclutadores de perfiles técnicos les encantan estos detalles ocultos porque demuestran que dominas el DOM y el CSS.
+
+4. Tu Zona Horaria en Vivo (Estilo Retro)
+
+Un detalle muy usado por desarrolladores indie y creativos internacionales:
+
+    Diseño: Un reloj digital funcional en tipografía de 8-bits (como Silkscreen).
+
+    Texto: LOCAL TIME: 14:05 PM [MX].
+
+    Por qué funciona: Le da a tu portafolio una sensación de estar "vivo" y funcionando en tiempo real, además de ser útil si te contactan personas de otros países.
+
+-->

@@ -1,0 +1,74 @@
+---
+const { title } = Astro.props;
+---
+
+<section class="relative w-full max-w-225 my-10 h-fit">
+  {title && <h2 class="font-crimson-pro  text-2xl font-bold">{title}</h2>}
+  <!-- Left arrow -->
+  <button
+    class="absolute  top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/15 bg-black/70 backdrop-blur-xl text-white/90 flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-white/25 hover:text-white hover:scale-110 active:scale-95 shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+    aria-label="scroll-left"
+  >
+    <svg
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      viewBox="0 0 24 24"
+    >
+      <path d="M15 18l-6-6 6-6"></path>
+    </svg>
+  </button>
+
+  <div
+    id="carousel-scroll"
+    class="flex gap-4 overflow-x-auto scroll-snap-x-mandatory py-5 px-5 scrollbar-none [&::-webkit-scrollbar]:hidden scroll-smooth"
+  >
+    <slot />
+  </div>
+
+  <!-- Right arrow -->
+  <button
+    class="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/15 bg-black/70 backdrop-blur-xl text-white/90 flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-white/25 hover:text-white hover:scale-110 active:scale-95 shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+    aria-label="scroll-right"
+  >
+    <svg
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      viewBox="0 0 24 24"
+    >
+      <path d="M9 18l6-6-6-6"></path>
+    </svg>
+  </button>
+</section>
+
+<script>
+  function initCarousel() {
+    const scrollContainer = document.getElementById("carousel-scroll");
+    const leftBtn = document.querySelector("[aria-label='scroll-left']");
+    const rightBtn = document.querySelector("[aria-label='scroll-right']");
+
+    if (!scrollContainer || !leftBtn || !rightBtn) return;
+
+    const scrollAmount = 280;
+
+    leftBtn.addEventListener("click", () => {
+      scrollContainer.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    });
+
+    rightBtn.addEventListener("click", () => {
+      scrollContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initCarousel);
+  initCarousel();
+</script>

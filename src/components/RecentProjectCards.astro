@@ -1,0 +1,6 @@
+---
+import RecentProjectCard from "./RecentProjectCard.astro";
+import { projects } from "../data/projects.ts";
+---
+
+{projects.map((project) => <RecentProjectCard project={project} />)}

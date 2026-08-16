@@ -8,6 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/agbalumo':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource/crimson-pro':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource/inter':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.2.1(esbuild@0.28.2)(jiti@2.7.0))
@@ -344,6 +353,15 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource/agbalumo@5.3.0':
+    resolution: {integrity: sha512-Q8QnwbOUGDI49gozKr+cpiTyuo2xx7gUoKLm/AfhW1373qtKSFFaBMn6Rm3VgN2BKRWLmJbeY7pHRtXWT1Upew==}
+
+  '@fontsource/crimson-pro@5.3.0':
+    resolution: {integrity: sha512-PXQH0NGma2wwskZAySBH+s/ezAYBwyDH0I4oRURBu9u81nNUCm5DcNCJaUS9H0UR1y8qlslLfVRU6mnDBpffrA==}
+
+  '@fontsource/inter@5.3.0':
+    resolution: {integrity: sha512-RofMylZmjlJEfELXeNHFWBRcSs75rGU/6bV2S2jfnvv/3rPXPGe0LgUJTklcHZ9lM4OZmAVFhcJPnACfb91A3g==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -1875,6 +1893,12 @@ snapshots:
 
   '@esbuild/win32-x64@0.28.2':
     optional: true
+
+  '@fontsource/agbalumo@5.3.0': {}
+
+  '@fontsource/crimson-pro@5.3.0': {}
+
+  '@fontsource/inter@5.3.0': {}
 
   '@img/colour@1.1.0':
     optional: true
