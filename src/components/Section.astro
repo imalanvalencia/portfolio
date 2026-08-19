@@ -1,0 +1,7 @@
+---
+const {...props } = Astro.props;
+---
+
+<section class=`w-full h-dvh ${props.class}` {...props}>
+    <slot />
+</section>
