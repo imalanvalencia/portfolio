@@ -1,5 +1,4 @@
 ---
-import background from "../assets/background.svg";
 import { contactLinks } from "../data/contact";
 import { mostUsedTech } from "../data/tech";
 import Carrousel from "./Carrousel.astro";
@@ -7,9 +6,7 @@ import { Icon } from "astro-icon/components";
 import RecentProjectCards from "./RecentProjectCards.astro";
 import Section from "./Section.astro";
 ---
-
-<div id="container">
-  <img id="background" src={background.src} alt="" fetchpriority="high" />
+<div id="container" class="bg-[#D2B48C]">
   <main>
     <Section id="hero">
       <!-- Background name text -->
@@ -50,26 +47,28 @@ import Section from "./Section.astro";
           }
         </div>
       </article>
+    </Section>
 
+    <footer>
       <!-- Role badge -->
       <article class="role-badge">
         <span>DESARROLLADOR<br />DE SOFTWARE</span>
       </article>
-    </Section>
+    </footer>
+
+    <!-- Actions row -->
+    <article class="hero-actions">
+      <a href="" class="btn btn-outline">Download CV</a>
+      <a href="#contacto" class="btn btn-outline">Hire me</a>
+    </article>
+
+    <!-- Recent projects -->
+    <article class="hero-projects">
+      <Carrousel title="Recent Projects">
+        <RecentProjectCards />
+      </Carrousel>
+    </article>
   </main>
-
-  <!-- Actions row -->
-  <article class="hero-actions">
-    <a href="" class="btn btn-outline">Download CV</a>
-    <a href="#contacto" class="btn btn-outline">Hire me</a>
-  </article>
-
-  <!-- Recent projects -->
-  <article class="hero-projects">
-    <Carrousel title="Recent Projects">
-      <RecentProjectCards />
-    </Carrousel>
-  </article>
 </div>
 
 <style>
