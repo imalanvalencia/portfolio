@@ -6,55 +6,53 @@ import { Icon } from "astro-icon/components";
 import RecentProjectCards from "./RecentProjectCards.astro";
 import Section from "./Section.astro";
 ---
-<div id="container" class="bg-[#D2B48C]">
-  <main>
-    <Section id="hero">
-      <!-- Background name text -->
-      <h1 class="hero-name">
-        <span>SOY ALAN</span>
-        <span>VALENCIA</span>
-      </h1>
 
-      <!-- Social card - top left -->
-      <article class="card card-social">
-        <h2>LET'S CONNECT</h2>
-        <div class="card-icons">
-          {
-            contactLinks.map((link) => (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener"
-                aria-label={link.label}
-              >
-                <Icon name={link.icon} size={24} />
-              </a>
-            ))
-          }
-        </div>
-      </article>
+<Section id="hero" class="bg-[#D2B48C]">
+  <!-- Background name text -->
+  <h1 class="hero-name">
+    <span>SOY ALAN</span>
+    <span>VALENCIA</span>
+  </h1>
 
-      <!-- Tech card - right side -->
-      <article class="card card-tech">
-        <h2>More Used Tech</h2>
-        <div class="card-icons">
-          {
-            mostUsedTech.map((item) => (
-              <span class="tech-badge">
-                <Icon name={item.icon} size={24} />
-              </span>
-            ))
-          }
-        </div>
-      </article>
-    </Section>
+  <!-- Social card - top left -->
+  <article class="card card-social">
+    <h2>LET'S CONNECT</h2>
+    <div class="card-icons">
+      {
+        contactLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener"
+            aria-label={link.label}
+          >
+            <Icon name={link.icon} size={24} />
+          </a>
+        ))
+      }
+    </div>
+  </article>
 
-    <footer>
-      <!-- Role badge -->
-      <article class="role-badge">
-        <span>DESARROLLADOR<br />DE SOFTWARE</span>
-      </article>
-    </footer>
+  <!-- Tech card - right side -->
+  <article class="card card-tech">
+    <h2>More Used Tech</h2>
+    <div class="card-icons">
+      {
+        mostUsedTech.map((item) => (
+          <span class="tech-badge">
+            <Icon name={item.icon} size={24} />
+          </span>
+        ))
+      }
+    </div>
+  </article>
+
+  <footer>
+    <!-- Role badge -->
+    <article class="role-badge">
+      <span>DESARROLLADOR </span>
+      <span>DE SOFTWARE</span>
+    </article>
 
     <!-- Actions row -->
     <article class="hero-actions">
@@ -68,33 +66,11 @@ import Section from "./Section.astro";
         <RecentProjectCards />
       </Carrousel>
     </article>
-  </main>
-</div>
+  </footer>
+</Section>
 
 <style>
-  /* ── Background ── */
-  #background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    filter: blur(100px);
-  }
-
-  #container {
-    height: 100%;
-  }
-
-  main {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   #hero {
-    position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -121,7 +97,7 @@ import Section from "./Section.astro";
     width: max-content;
   }
 
-  .hero-name span {
+  .hero-name span, .role-badge span {
     display: block;
   }
 
@@ -165,15 +141,15 @@ import Section from "./Section.astro";
   .card-social {
     background: #34d399;
     top: auto;
-    bottom: calc(50% + 0.9 * var(--hero-fs) + 16px);
-    left: 5%;
+    bottom: calc(45% + 0.9 * var(--hero-fs) + 16px);
+    left: 10%;
     transform: rotate(-8deg);
   }
 
   /* Tech card — right */
   .card-tech {
     background: #a78bfa;
-    top: 38%;
+    top: 45%;
     right: 5%;
     transform: rotate(4deg);
   }
@@ -317,7 +293,7 @@ import Section from "./Section.astro";
       bottom: auto;
       right: auto;
       margin-top: 24px;
-      justify-content: center;
+      justify-content: start;
       width: 100%;
     }
 

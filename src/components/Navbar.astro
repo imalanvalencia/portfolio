@@ -1,5 +1,7 @@
 ---
 import Logo from "../assets/logo.svg";
+import { Icon } from "astro-icon/components";
+import { contactLinks } from "../data/contact";
 
 const navigationLinks = [
   { name: "Inicio", href: "/" },
@@ -9,16 +11,20 @@ const navigationLinks = [
 ];
 ---
 
+<!-- ═══════════════════════════════════════════════════════
+     DESKTOP HEADER (≥1024px)
+     ═══════════════════════════════════════════════════════ -->
 <header
-  class="flex justify-between items-center p-6 fixed top-0 left-0 right-0 z-50"
+  class="hidden lg:flex justify-between items-center p-6 fixed top-0 left-0 right-0 z-50"
 >
   <a
     href="/"
     class="w-37.5 text-white/90 hover:text-green-400 transition-colors"
-    ><Logo /></a
   >
+    <Logo />
+  </a>
 
-  <nav class="flex items-center justify-between">
+  <nav>
     <ul class="flex gap-4">
       {
         navigationLinks.map((link) => (
@@ -38,41 +44,140 @@ const navigationLinks = [
   </div>
 </header>
 
-<!-- 
-1. El Interruptor de "Actitud" (Falso Dark Mode)
+<!-- ═══════════════════════════════════════════════════════
+     MOBILE/TABLET HEADER (<1024px)
+     ═══════════════════════════════════════════════════════ -->
+<header
+  class="flex lg:hidden justify-between items-center p-6 fixed top-0 left-0 right-0 z-50"
+>
+  <a
+    href="/"
+    class="w-24 text-white/90 hover:text-green-400 transition-colors"
+  >
+    <Logo />
+  </a>
 
-En lugar de un clásico y aburrido botón de "Modo Claro / Modo Oscuro", puedes poner un interruptor (toggle) lúdico:
+  <button
+    id="menu-toggle"
+    class="text-white/90 hover:text-green-400 transition-colors"
+    aria-label="Abrir menú"
+  >
+    <Icon name="lucide:menu" size={28} />
+  </button>
+</header>
 
-    Modo Caos vs. Modo Aburrido: Por defecto, tu web está en "Modo Caos" (colores vibrantes, tarjetas desalineadas). Si el usuario pulsa el interruptor a "Aburrido", la web se transforma en un portafolio corporativo gris, súper rígido y tradicional (como una broma).
+<!-- ═══════════════════════════════════════════════════════
+     FULL-SCREEN OVERLAY
+     ═══════════════════════════════════════════════════════ -->
+<div
+  id="menu-overlay"
+  class="fixed inset-0 z-100 bg-[#34d399] flex flex-col opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menú de navegación"
+>
+  <!-- Overlay header -->
+  <div class="flex justify-between items-center p-6">
+    <a href="/" class="w-24 text-white/90">
+      <Logo />
+    </a>
+    <button
+      id="menu-close"
+      class="text-white/90 hover:text-white transition-colors"
+      aria-label="Cerrar menú"
+    >
+      <Icon name="lucide:x" size={28} />
+    </button>
+  </div>
 
-    Modo "Code Artist" vs. "Engineer": Un botón estilo switch industrial que cambie ligeramente la interfaz o la tipografía principal.
+  <!-- Centered nav links -->
+  <nav class="flex-1 flex flex-col items-center justify-center gap-8">
+    {
+      navigationLinks.map((link) => (
+        <a
+          href={link.href}
+          class="font-crimson-pro font-extrabold text-4xl md:text-5xl text-white/90 hover:text-white transition-colors duration-300"
+        >
+          {link.name}
+        </a>
+      ))
+    }
+  </nav>
 
-2. El Indicador de Status "Terminal"
+  <!-- Bottom section -->
+  <div class="flex flex-col items-center gap-4 pb-8">
+    <!-- Dark mode toggle + Language selector -->
+    <div class="flex items-center gap-4">
+      <button
+        class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
+        aria-label="Cambiar tema"
+      >
+        <Icon name="lucide:moon" size={20} />
+      </button>
+      <button
+        class="flex items-center gap-1 text-white/90 hover:text-white font-crimson-pro font-bold text-lg"
+        aria-label="Cambiar idioma"
+      >
+        <Icon name="lucide:globe" size={20} />
+        <span>ES</span>
+      </button>
+    </div>
 
-Aprovechando que el rojo es tu color de acento desafiante, puedes poner un indicador de disponibilidad en la esquina:
+    <!-- Social icons -->
+    <div class="flex items-center gap-4">
+      {
+        contactLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener"
+            aria-label={link.label}
+            class="text-white/90 hover:text-white transition-colors"
+          >
+            <Icon name={link.icon} size={24} />
+          </a>
+        ))
+      }
+    </div>
 
-    Diseño: Un pequeño bloque con borde negro grueso, fondo blanco y un punto rojo parpadeante (animado con CSS).
+    <!-- Copyright -->
+    <p class="text-white/60 text-sm font-crimson-pro">
+      &copy; 2023 by Alan Valencia. ALL RIGHTS RESERVED.
+    </p>
+  </div>
+</div>
 
-    Texto: Una tipografía pixelada o de terminal que diga >_ STATUS: AVAILABLE o >_ BUSCANDO RETOS.
+<!-- ═══════════════════════════════════════════════════════
+     SCRIPT — Toggle, ESC, scroll lock
+     ═══════════════════════════════════════════════════════ -->
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const close = document.getElementById("menu-close");
+  const overlay = document.getElementById("menu-overlay");
+  const body = document.body;
 
-    Impacto: Es directo, le dice a los reclutadores o clientes que estás libre para trabajar, y visualmente se ve como el panel de un servidor o una consola.
+  function openMenu() {
+    overlay?.classList.remove("opacity-0", "pointer-events-none");
+    overlay?.classList.add("opacity-100", "pointer-events-auto");
+    body.style.overflow = "hidden";
+  }
 
-3. Un Easter Egg Interactivo (Botón de "No Tocar")
+  function closeMenu() {
+    overlay?.classList.remove("opacity-100", "pointer-events-auto");
+    overlay?.classList.add("opacity-0", "pointer-events-none");
+    body.style.overflow = "";
+  }
 
-Si quieres abrazar al máximo la sensación lúdica de Panic Studio:
+  toggle?.addEventListener("click", openMenu);
+  close?.addEventListener("click", closeMenu);
 
-    Pon un botón rojo súper llamativo en el navbar con un texto que diga "NO TOCAR".
+  // Close on nav link click
+  overlay?.querySelectorAll("nav a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
 
-    Si el usuario hace clic, puede ocurrir una micro-interacción divertida: la pantalla tiembla ligeramente, caen un par de stickers pixel art desde arriba de la pantalla, o tu logotipo de la letra "A" da un giro. A los reclutadores de perfiles técnicos les encantan estos detalles ocultos porque demuestran que dominas el DOM y el CSS.
-
-4. Tu Zona Horaria en Vivo (Estilo Retro)
-
-Un detalle muy usado por desarrolladores indie y creativos internacionales:
-
-    Diseño: Un reloj digital funcional en tipografía de 8-bits (como Silkscreen).
-
-    Texto: LOCAL TIME: 14:05 PM [MX].
-
-    Por qué funciona: Le da a tu portafolio una sensación de estar "vivo" y funcionando en tiempo real, además de ser útil si te contactan personas de otros países.
-
--->
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+</script>
